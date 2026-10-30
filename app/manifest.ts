@@ -4,7 +4,7 @@ import { CANONICAL_ORIGIN } from "@/lib/seo"
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${BRAND_CONFIG.name} — Digital Solutions & Creative Technology Company`,
+    name: `${BRAND_CONFIG.name} - Digital Solutions & Creative Technology Company`,
     short_name: BRAND_CONFIG.name,
     description: BRAND_CONFIG.tagline.en,
     start_url: "/",

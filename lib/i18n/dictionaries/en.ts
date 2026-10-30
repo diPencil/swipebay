@@ -51,8 +51,9 @@ export const enDictionary: Dictionary = {
       },
       {
         title: "Applied AI",
-        sub: "Workflow automation that cuts operational overhead.",
-        badge: "Automation",
+        sub: "Intelligent AI solutions that streamline workflows and enhance decisions.",
+        badge: "SuperFeliz",
+        badgeIcon: "/technologies/superfeliz.svg",
       },
       {
         title: "Targeted Growth",
@@ -137,9 +138,10 @@ export const enDictionary: Dictionary = {
     ],
   },
   techMarquee: {
-    badge: "MODERN TECH STACK & ECOSYSTEM",
+    badge: "BY PENCIL STUDIO",
     title: "Engineered with proven enterprise technologies",
-    subtitle: "We build on dependable, modern open-source foundations and tier-one cloud providers.",
+    subtitle:
+      "We build on dependable open-source foundations, modern architectural patterns, and tier-one cloud infrastructure-engineered for high availability, airtight security, and seamless scalability as your business expands.",
     cta: "Review Our Stack",
   },
   pricing: {

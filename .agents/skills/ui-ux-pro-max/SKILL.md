@@ -69,7 +69,7 @@ Extract key information from user request:
   (package.json, existing files, explicit request) or ask. Then load its rules with
   `--stack <name>` (see "Available Stacks"). Do not assume React Native.
 - **Platform**: web or native app. Several sections below are scoped to App UI
-  (iOS/Android/React Native/Flutter) and do not apply to desktop-web work —
+  (iOS/Android/React Native/Flutter) and do not apply to desktop-web work -
   safe areas, haptics, bottom nav and Dynamic Type are mobile-only concerns.
 
 ### Step 2: Generate Design System (new projects/pages)

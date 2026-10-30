@@ -31,6 +31,7 @@ export interface Dictionary {
       title: string
       sub: string
       badge: string
+      badgeIcon?: string
     }>
     mediaNote?: string
   }

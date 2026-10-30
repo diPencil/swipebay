@@ -107,6 +107,7 @@ export function Hero() {
                     title={card.title}
                     sub={card.sub}
                     badge={card.badge}
+                    badgeIcon={card.badgeIcon}
                     videoSrc={videoUrl}
                     isRTL={isRTL}
                   />
@@ -135,6 +136,7 @@ export function Hero() {
                       title={card.title}
                       sub={card.sub}
                       badge={card.badge}
+                      badgeIcon={card.badgeIcon}
                       videoSrc={videoUrl}
                       isRTL={isRTL}
                     />
@@ -153,15 +155,19 @@ function PhoneCard({
   title,
   sub,
   badge,
+  badgeIcon,
   videoSrc,
   isRTL = false,
 }: {
   title: string
   sub: string
   badge: string
+  badgeIcon?: string
   videoSrc: string
   isRTL?: boolean
 }) {
+  const iconSrc = badgeIcon || (badge.toLowerCase().includes("superfeliz") ? "/technologies/superfeliz.svg" : null)
+
   return (
     <div className="relative rounded-[20px] sm:rounded-[28px] liquid-glass border border-white/10 p-1.5 sm:p-2 shadow-xl hover:border-purple-400/40 transition-all duration-300 group">
       <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[15px] sm:rounded-2xl bg-black">
@@ -192,8 +198,18 @@ function PhoneCard({
               {sub}
             </p>
             <div className="pt-0.5 sm:pt-1">
-              <span className="inline-flex items-center gap-0.5 sm:gap-1 rounded-full bg-[#49CBDC]/10 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wider text-[#49CBDC] border border-[#49CBDC]/30 backdrop-blur-sm">
-                <Sparkles className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
+              <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-[#49CBDC]/10 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wider text-[#49CBDC] border border-[#49CBDC]/30 backdrop-blur-sm">
+                {iconSrc ? (
+                  <Image
+                    src={iconSrc}
+                    alt={badge}
+                    width={14}
+                    height={14}
+                    className="h-2.5 w-2.5 sm:h-3 sm:w-3 object-contain shrink-0"
+                  />
+                ) : (
+                  <Sparkles className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
+                )}
                 <span>{badge}</span>
               </span>
             </div>

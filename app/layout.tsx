@@ -62,7 +62,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${CANONICAL_ORIGIN}${BRAND_CONFIG.assets.logoGrid}`,
           width: 1200,
           height: 630,
-          alt: `${BRAND_CONFIG.name} — ${dict.meta.title}`,
+          alt: `${BRAND_CONFIG.name} - ${dict.meta.title}`,
         },
       ],
     },

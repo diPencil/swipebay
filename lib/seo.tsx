@@ -71,7 +71,7 @@ export function constructPageMetadata({
           url: absoluteImageUrl,
           width: 1200,
           height: 630,
-          alt: `${BRAND_CONFIG.name} — ${title}`,
+          alt: `${BRAND_CONFIG.name} - ${title}`,
         },
       ],
     },
@@ -83,21 +83,21 @@ export function constructPageMetadata({
     },
     robots: noindex
       ? {
-          index: false,
-          follow: false,
-          nocache: true,
-        }
+        index: false,
+        follow: false,
+        nocache: true,
+      }
       : {
+        index: true,
+        follow: true,
+        googleBot: {
           index: true,
           follow: true,
-          googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-          },
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
         },
+      },
   }
 }
 

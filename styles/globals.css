@@ -117,13 +117,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 /* ========================================================
-   SWIPEBAY — Slanted Wireframe Parallelogram Button Geometry
+   SWIPEBAY - Slanted Wireframe Parallelogram Button Geometry
    Matches exact wireframe angle (~22deg) with sharp corners,
    untransformed upright text/icons, and authentic borders/glows.
    ======================================================== */
@@ -165,7 +166,7 @@
 }
 
 /* Content layer stays 100% upright, sharp, and undistorted */
-.slanted-btn > * {
+.slanted-btn>* {
   position: relative;
   z-index: 1;
 }
@@ -175,14 +176,17 @@
   color: #000000 !important;
   font-weight: 600 !important;
 }
+
 .slanted-btn-primary::before {
   background-color: #49CBDC !important;
   box-shadow: 0 0 24px rgba(73, 203, 220, 0.35) !important;
   border: 1px solid #49CBDC !important;
 }
+
 .slanted-btn-primary:hover {
   transform: scale(1.02);
 }
+
 .slanted-btn-primary:hover::before {
   background-color: #67D6E4 !important;
   border-color: #67D6E4 !important;
@@ -194,6 +198,7 @@
   color: #ffffff !important;
   font-weight: 500 !important;
 }
+
 .slanted-btn-outline::before {
   background-color: rgba(255, 255, 255, 0.05) !important;
   border: 1px solid rgba(255, 255, 255, 0.22) !important;
@@ -201,10 +206,12 @@
   -webkit-backdrop-filter: blur(12px);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
+
 .slanted-btn-outline:hover {
   transform: scale(1.02);
   color: #ffffff !important;
 }
+
 .slanted-btn-outline:hover::before {
   background-color: rgba(255, 255, 255, 0.12) !important;
   border-color: rgba(73, 203, 220, 0.6) !important;
@@ -216,14 +223,17 @@
   color: #ffffff !important;
   font-weight: 600 !important;
 }
+
 .slanted-btn-purple::before {
   background-color: #8b5cf6 !important;
   border: 1px solid #8b5cf6 !important;
   box-shadow: 0 0 24px rgba(139, 92, 246, 0.35) !important;
 }
+
 .slanted-btn-purple:hover {
   transform: scale(1.02);
 }
+
 .slanted-btn-purple:hover::before {
   background-color: #a78bfa !important;
   border-color: #a78bfa !important;
@@ -234,10 +244,12 @@
 .slanted-btn-ghost {
   color: #ffffff !important;
 }
+
 .slanted-btn-ghost::before {
   background-color: transparent !important;
   border: 1px solid transparent !important;
 }
+
 .slanted-btn-ghost:hover::before {
   background-color: rgba(255, 255, 255, 0.08) !important;
   border-color: rgba(255, 255, 255, 0.2) !important;
@@ -278,6 +290,7 @@
     font-size: 0.75rem !important;
     white-space: nowrap !important;
   }
+
   .slanted-board .slanted-btn svg {
     width: 0.875rem !important;
     height: 0.875rem !important;
@@ -300,7 +313,7 @@
   pointer-events: none;
 }
 
-.slanted-board > * {
+.slanted-board>* {
   position: relative;
   z-index: 1;
 }
@@ -309,6 +322,7 @@
 .slanted-btn:focus-visible {
   outline: none !important;
 }
+
 .slanted-btn:focus-visible::before {
   outline: 2px solid #49CBDC !important;
   outline-offset: 3px !important;
@@ -326,6 +340,7 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
 /* Hide scrollbar for IE, Edge and Firefox */
 .no-scrollbar {
   -ms-overflow-style: none;
@@ -337,6 +352,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-33.333333%);
   }
@@ -352,4 +368,3 @@
     animation: none !important;
   }
 }
-

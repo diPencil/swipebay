@@ -355,11 +355,11 @@ export function AppverseFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center mx-0.5 hover:opacity-80 transition-opacity"
-                title="Pencil"
+                title={locale === "ar" ? "بنسل ستوديو" : "Pencil Studio"}
               >
                 <Image
                   src="/pencillogo.png"
-                  alt="Pencil"
+                  alt={locale === "ar" ? "بنسل ستوديو" : "Pencil Studio"}
                   width={70}
                   height={16}
                   className="h-3.5 sm:h-4 w-auto object-contain inline-block"
@@ -367,7 +367,7 @@ export function AppverseFooter() {
               </a>
               <span>
                 {locale === "ar"
-                  ? " | جميع الحقوق محفوظة لـ Pencil Studio."
+                  ? " | جميع الحقوق محفوظة لـ بنسل ستوديو."
                   : " | All rights reserved by Pencil Studio."}
               </span>
             </div>

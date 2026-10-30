@@ -223,7 +223,7 @@ Summarizing beats deleting. Before removing a long stretch of exploration, reduc
 
 ```
 Before: [8 messages debugging a failing import - various attempts, error logs, dead ends]
-After:  "Import issue traced to a circular dependency in src/lib/db.ts —
+After:  "Import issue traced to a circular dependency in src/lib/db.ts -
          resolved by moving the shared type to src/types/index.ts."
 ```
 

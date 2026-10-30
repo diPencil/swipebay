@@ -13,7 +13,7 @@ interface TechItem {
 
 export function LogoMarquee() {
   const [pausedRow, setPausedRow] = useState<string | null>(null)
-  const { dictionary } = useLanguage()
+  const { dictionary, isRTL } = useLanguage()
   const t = dictionary.techMarquee
 
   const rowOne: TechItem[] = [
@@ -45,7 +45,7 @@ export function LogoMarquee() {
     { name: "AWS EC2", category: "Cloud & VPC", iconSrc: "/technologies/aws-ec2-svgrepo-com.svg" },
     { name: "Firebase", category: "Cloud Backend", iconSrc: "/technologies/firebase-svgrepo-com.svg" },
     { name: "Git", category: "Version Control", iconSrc: "/technologies/git-svgrepo-com.svg", invertOnDark: true },
-    { name: "RESTful APIs", category: "Service Mesh", iconSrc: "/technologies/rest-api-svgrepo-com.svg" },
+    { name: "RESTful APIs", category: "Service Mesh", iconSrc: "/technologies/rest-api-svgrepo-com.svg", invertOnDark: true },
     { name: "Redux", category: "State Engine", iconSrc: "/technologies/redux-svgrepo-com.svg" },
   ]
 
@@ -87,14 +87,37 @@ export function LogoMarquee() {
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Header */}
         <div className="flex flex-col items-center justify-between mb-12 sm:flex-row sm:items-end">
-          <div className="text-center sm:text-start space-y-2">
-            <span className="text-[11px] font-semibold tracking-widest text-purple-300 uppercase">
-              {t.badge}
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+          <div className="text-center sm:text-start space-y-3">
+            <div>
+              <a
+                href="https://dipencil.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={isRTL ? "بنسل ستوديو" : "Pencil Studio"}
+                aria-label={isRTL ? "بنسل ستوديو (يفتح في نافذة جديدة)" : "Pencil Studio (opens in a new window)"}
+                className="group inline-flex items-center gap-2 rounded-full px-3.5 py-1 text-xs font-semibold text-cyan-200 transition-all duration-300 hover:border-[#49CBDC] hover:shadow-[0_0_20px_rgba(73,203,220,0.35)] hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#49CBDC] focus-visible:ring-offset-2 focus-visible:ring-offset-black cursor-pointer"
+                style={{
+                  backgroundColor: "rgba(0, 0, 0, 0.6)",
+                  border: "1px solid rgba(73, 203, 220, 0.4)",
+                }}
+              >
+                <Image
+                  src="/pencil-icon.png"
+                  alt="Pencil Studio emblem"
+                  width={16}
+                  height={16}
+                  className="h-3.5 w-3.5 object-contain transition-transform duration-300 group-hover:scale-110"
+                  priority
+                />
+                <span className="tracking-wider uppercase text-[11px] sm:text-xs text-cyan-200 font-semibold group-hover:text-white transition-colors">
+                  {t.badge}
+                </span>
+              </a>
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight text-white leading-tight">
               {t.title}
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-400 max-w-xl">
+            <p className="text-xs sm:text-sm text-neutral-400 max-w-xl sm:max-w-2xl leading-relaxed">
               {t.subtitle}
             </p>
           </div>
