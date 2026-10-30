@@ -124,7 +124,7 @@ export function CaseStudyContent({
               <Button
                 asChild
                 size="lg"
-                className="rounded-full bg-[#49CBDC] px-8 text-black font-semibold hover:bg-[#67D6E4] shadow-[0_0_24px_rgba(73,203,220,0.35)]"
+                className="text-black font-semibold cursor-pointer"
               >
                 <Link href="/contact">
                   {isAr ? "ناقش مشروعاً مشابهاً" : "Request Similar Architecture"}
@@ -136,7 +136,7 @@ export function CaseStudyContent({
                 asChild
                 variant="outline"
                 size="lg"
-                className="rounded-full border-white/20 bg-white/5 px-6 text-white hover:bg-white/10 backdrop-blur-md"
+                className="cursor-pointer"
               >
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4 text-[#49CBDC]" />
@@ -346,7 +346,7 @@ export function CaseStudyContent({
                 </p>
                 <Button
                   asChild
-                  className="w-full rounded-full bg-[#49CBDC] text-black font-semibold hover:bg-[#67D6E4]"
+                  className="w-full text-black font-semibold cursor-pointer"
                 >
                   <Link href="/contact">
                     {isAr ? "تواصل مع مهندسينا" : "Talk to Our Team"}

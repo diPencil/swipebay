@@ -71,9 +71,8 @@ export function SiteHeader() {
 
             <Button
               asChild
-              className="bg-[#49CBDC] text-black font-semibold rounded-full px-5 py-2 text-xs
-                         hover:bg-[#67D6E4] hover:shadow-[0_0_20px_rgba(73,203,220,0.35)] hover:scale-[1.02]
-                         transition-all"
+              size="sm"
+              className="text-xs font-semibold"
             >
               <Link href="/contact">
                 {dictionary.nav.contactUs}
@@ -89,7 +88,7 @@ export function SiteHeader() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="border-gray-700 bg-gray-900/80 text-gray-200 hover:bg-gray-800 h-9 w-9"
+                  className="rounded-lg border-gray-700 bg-gray-900/80 text-gray-200 hover:bg-gray-800 h-9 w-9"
                   aria-label="Open mobile menu"
                 >
                   <Menu className="h-5 w-5" />
@@ -141,8 +140,7 @@ export function SiteHeader() {
                   </div>
                   <Button
                     asChild
-                    className="w-full bg-[#49CBDC] text-black font-semibold rounded-lg px-4 py-2.5 text-xs
-                               hover:bg-[#67D6E4] hover:shadow-[0_0_15px_rgba(73,203,220,0.35)] transition-all"
+                    className="w-full h-10 text-xs font-semibold"
                   >
                     <Link href="/contact">
                       {dictionary.nav.contactUs}

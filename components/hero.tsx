@@ -70,50 +70,78 @@ export function Hero() {
             {h.description}
           </p>
 
-          {/* Dual CTAs */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+          {/* Dual CTAs: Side-by-side on both mobile & desktop */}
+          <div className="mt-5 sm:mt-6 flex flex-row items-center justify-center gap-2 sm:gap-3 max-w-full">
             <Button
               asChild
-              className="rounded-full bg-[#49CBDC] px-7 py-3 text-sm font-semibold text-black shadow-[0_0_24px_rgba(73,203,220,0.35)] hover:bg-[#67D6E4] hover:shadow-[0_0_28px_rgba(73,203,220,0.5)] hover:scale-[1.02] transition-all"
+              className="h-9 sm:h-11 !px-3.5 xs:!px-4.5 sm:!px-8 text-xs sm:text-sm font-semibold shrink-0"
             >
               <a href={BRAND_CONFIG.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">
                 <span>{h.primaryCta}</span>
-                <ArrowIcon className="h-4 w-4 ms-2" />
+                <ArrowIcon className="h-3 w-3 ms-1 sm:h-4 sm:w-4 sm:ms-2 shrink-0" />
               </a>
             </Button>
 
             <Button
               asChild
               variant="outline"
-              className="rounded-full border-white/20 bg-white/5 px-6 py-3 text-sm font-medium text-white hover:bg-white/10 hover:border-[#49CBDC]/40 backdrop-blur-md transition-all"
+              className="h-9 sm:h-11 !px-3.5 xs:!px-4.5 sm:!px-8 text-xs sm:text-sm font-medium shrink-0"
             >
               <Link href="/services">{h.secondaryCta}</Link>
             </Button>
           </div>
 
-          {/* Disciplines Showcase Grid (Responsive phone cards) */}
-          <div className="mt-10 sm:mt-12 grid w-full gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
+          {/* ========================================================
+              DISCIPLINES SHOWCASE:
+              - Desktop (lg+): Static 5-column grid across full width (untouched)
+              - Mobile (< lg): Infinite continuous marquee loop
+              ======================================================== */}
+
+          {/* 1. Desktop Showcase: Static 5-Column Grid (Untouched) */}
+          <div className="hidden lg:grid lg:grid-cols-5 lg:gap-4 lg:w-full mt-10 sm:mt-12">
             {h.cards.map((card, idx) => {
               const videoUrl = videoByDiscipline[card.title] || defaultVideos[idx % defaultVideos.length]
-              // Responsive visibility matches original design
-              const visibility =
-                idx <= 2
-                  ? "block"
-                  : idx === 3
-                    ? "hidden sm:block"
-                    : "hidden lg:block"
-
               return (
-                <div key={idx} className={visibility}>
+                <div key={`desktop-${idx}`}>
                   <PhoneCard
                     title={card.title}
                     sub={card.sub}
                     badge={card.badge}
                     videoSrc={videoUrl}
+                    isRTL={isRTL}
                   />
                 </div>
               )
             })}
+          </div>
+
+          {/* 2. Mobile & Tablet Showcase: Seamless Infinite Marquee Loop (Crisp, No Edge Fade) */}
+          <div
+            className="block lg:hidden w-full mt-8 relative overflow-hidden"
+            dir="ltr"
+          >
+            <div
+              className="flex gap-3 animate-hero-phones hover:[animation-play-state:paused] active:[animation-play-state:paused] py-1"
+              style={{ width: "max-content" }}
+            >
+              {[...h.cards, ...h.cards, ...h.cards].map((card, idx) => {
+                const videoUrl = videoByDiscipline[card.title] || defaultVideos[idx % defaultVideos.length]
+                return (
+                  <div
+                    key={`mobile-marquee-${idx}`}
+                    className="w-[150px] xs:w-[165px] sm:w-[185px] shrink-0"
+                  >
+                    <PhoneCard
+                      title={card.title}
+                      sub={card.sub}
+                      badge={card.badge}
+                      videoSrc={videoUrl}
+                      isRTL={isRTL}
+                    />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -126,15 +154,17 @@ function PhoneCard({
   sub,
   badge,
   videoSrc,
+  isRTL = false,
 }: {
   title: string
   sub: string
   badge: string
   videoSrc: string
+  isRTL?: boolean
 }) {
   return (
-    <div className="relative rounded-[28px] liquid-glass border border-white/10 p-2 shadow-xl hover:border-purple-400/40 transition-all duration-300 group">
-      <div className="relative aspect-[9/19] w-full overflow-hidden rounded-2xl bg-black">
+    <div className="relative rounded-[20px] sm:rounded-[28px] liquid-glass border border-white/10 p-1.5 sm:p-2 shadow-xl hover:border-purple-400/40 transition-all duration-300 group">
+      <div className="relative aspect-[9/19] w-full overflow-hidden rounded-[15px] sm:rounded-2xl bg-black">
         <LazyVideo
           src={videoSrc}
           className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -146,21 +176,24 @@ function PhoneCard({
         />
 
         {/* Liquid gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30 pointer-events-none" />
 
-        <div className="relative z-10 flex h-full flex-col justify-between p-3.5 text-start">
-          <div className="mx-auto h-1.5 w-14 rounded-full bg-white/20" />
+        <div
+          className="relative z-10 flex h-full flex-col justify-between p-2.5 sm:p-3.5 text-start"
+          dir={isRTL ? "rtl" : "ltr"}
+        >
+          <div className="mx-auto h-1 w-10 sm:h-1.5 sm:w-14 rounded-full bg-white/20" />
 
-          <div className="space-y-1.5 pb-1">
-            <div className="text-base font-bold leading-tight text-white drop-shadow-sm">
+          <div className="space-y-1 sm:space-y-1.5 pb-0.5 sm:pb-1">
+            <div className="text-xs sm:text-base font-bold leading-tight text-white drop-shadow-sm line-clamp-1 sm:line-clamp-none">
               {title}
             </div>
-            <p className="text-[11px] text-neutral-300 leading-snug line-clamp-2">
+            <p className="text-[10px] sm:text-[11px] text-neutral-300 leading-snug line-clamp-2">
               {sub}
             </p>
-            <div className="pt-1">
-              <span className="inline-flex items-center gap-1 rounded-full bg-[#49CBDC]/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider text-[#49CBDC] border border-[#49CBDC]/30 backdrop-blur-sm">
-                <Sparkles className="h-2.5 w-2.5" />
+            <div className="pt-0.5 sm:pt-1">
+              <span className="inline-flex items-center gap-0.5 sm:gap-1 rounded-full bg-[#49CBDC]/10 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wider text-[#49CBDC] border border-[#49CBDC]/30 backdrop-blur-sm">
+                <Sparkles className="h-2 w-2 sm:h-2.5 sm:w-2.5" />
                 <span>{badge}</span>
               </span>
             </div>

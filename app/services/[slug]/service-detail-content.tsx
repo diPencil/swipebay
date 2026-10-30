@@ -306,7 +306,7 @@ export function ServiceDetailContent({
             <div className="flex items-center gap-3 shrink-0">
               <Button
                 asChild
-                className="rounded-full bg-[#49CBDC] px-6 py-2.5 text-xs sm:text-sm font-bold text-black shadow-[0_0_20px_rgba(73,203,220,0.35)] hover:bg-[#67D6E4] hover:scale-[1.02] transition-all cursor-pointer"
+                className="text-xs sm:text-sm font-bold text-black cursor-pointer"
               >
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
                   <WhatsAppIcon className="h-4 w-4" />
@@ -317,7 +317,7 @@ export function ServiceDetailContent({
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full border-white/20 bg-white/5 px-5 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/10 hover:border-purple-400/50 backdrop-blur-md transition-all cursor-pointer"
+                className="text-xs sm:text-sm font-semibold cursor-pointer"
               >
                 <a href={emailUrl} className="gap-2">
                   <MailIcon className="h-3.5 w-3.5 text-purple-300" />
@@ -426,10 +426,10 @@ export function ServiceDetailContent({
 
               <Button
                 asChild
-                className="w-full rounded-full bg-black py-3.5 text-xs sm:text-sm font-bold text-white hover:bg-neutral-900 shadow-[0_10px_25px_rgba(0,0,0,0.4)] transition-all cursor-pointer"
+                className="w-full text-xs sm:text-sm font-bold text-black cursor-pointer"
               >
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
-                  <WhatsAppIcon className="h-4 w-4 text-[#49CBDC]" />
+                  <WhatsAppIcon className="h-4 w-4" />
                   <span>{isAr ? "محادثة فورية عبر واتساب" : "Connect on WhatsApp"}</span>
                 </a>
               </Button>
@@ -743,7 +743,7 @@ export function ServiceDetailContent({
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full border-white/20 bg-white/5 hover:bg-white/10 hover:border-[#49CBDC]/50 px-4 py-2 text-xs font-semibold text-neutral-200 hover:text-white transition-all shadow-sm"
+                className="text-xs font-semibold text-neutral-200 hover:text-white"
               >
                 <Link href="/services" className="gap-1.5">
                   <span>{exp.allDisciplinesTitle || (isAr ? "الدليل الشامل" : "All 10 Disciplines")}</span>

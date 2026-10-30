@@ -248,7 +248,7 @@ export function EnterpriseContent({
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border-white/20 bg-white/5 px-6 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-white/10 hover:border-purple-400/50 backdrop-blur-md transition-all"
+                  className="h-10 px-6 text-xs sm:text-sm font-medium"
                 >
                   <a href="#configurator" className="inline-flex items-center gap-2">
                     <span>{isAr ? "خصص حزمة أعمالك" : "Build Your Solution"}</span>
@@ -277,11 +277,11 @@ export function EnterpriseContent({
                 />
               </div>
 
-              {/* Floating Liquid-Glass Dual-CTA Capsule (Overlapping lower section of avatar, exactly like reference) */}
-              <div className="relative z-20 -mt-8 sm:-mt-10 rounded-full border border-white/20 bg-neutral-950/85 backdrop-blur-2xl p-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(73,203,220,0.25)] flex items-center gap-1.5 sm:gap-2">
+              {/* Floating Liquid-Glass Dual-CTA Capsule: Slanted Board */}
+              <div className="relative z-20 -mt-8 sm:-mt-10 slanted-board flex items-center gap-1.5 sm:gap-2">
                 <Button
                   asChild
-                  className="rounded-full bg-[#49CBDC] px-5 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-black hover:bg-[#67D6E4] shadow-[0_0_15px_rgba(73,203,220,0.4)] transition-all"
+                  className="h-8 sm:h-10 px-3.5 sm:px-6 text-xs sm:text-sm font-semibold"
                 >
                   <Link href="/contact">
                     {isAr ? "ابدأ مشروعك" : "Start Your Project"}
@@ -291,7 +291,7 @@ export function EnterpriseContent({
                 <Button
                   asChild
                   variant="ghost"
-                  className="rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white hover:text-[#49CBDC] hover:bg-white/5 transition-all"
+                  className="h-8 sm:h-10 px-3 sm:px-5 text-xs sm:text-sm font-medium"
                 >
                   <a href={BRAND_CONFIG.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5">
                     <WhatsAppIcon className="h-4 w-4 text-[#49CBDC]" />
@@ -624,8 +624,9 @@ export function EnterpriseContent({
 
                   <Button
                     type="button"
+                    variant="outline"
                     onClick={() => handleSelectBundle(pkg)}
-                    className="w-full rounded-full bg-white/10 border border-white/20 text-white font-medium hover:bg-[#49CBDC] hover:text-black hover:border-[#49CBDC] transition-all"
+                    className="w-full text-white font-medium hover:text-black cursor-pointer"
                   >
                     <span>{isAr ? "تخصيص هذه الحزمة" : "Configure This Bundle"}</span>
                     <ArrowIcon className="ml-2 h-4 w-4" />
@@ -1008,7 +1009,7 @@ export function EnterpriseContent({
                     <Button
                       asChild
                       size="lg"
-                      className="rounded-full bg-[#49CBDC] text-black font-semibold hover:bg-[#67D6E4] shadow-[0_0_24px_rgba(73,203,220,0.35)]"
+                      className="text-black font-semibold cursor-pointer"
                     >
                       <a href={whatsappQuoteUrl} target="_blank" rel="noopener noreferrer">
                         <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />
@@ -1020,7 +1021,7 @@ export function EnterpriseContent({
                       asChild
                       variant="outline"
                       size="lg"
-                      className="rounded-full border-white/20 bg-white/5 text-white hover:bg-white/10 backdrop-blur-md"
+                      className="cursor-pointer"
                     >
                       <Link href={contactPageUrl}>
                         <Mail className="mr-2 h-4 w-4" />
@@ -1069,7 +1070,7 @@ export function EnterpriseContent({
                 <Button
                   type="button"
                   onClick={() => setConfigStep((prev) => Math.min(5, prev + 1))}
-                  className="rounded-full bg-[#49CBDC] text-black font-semibold hover:bg-[#67D6E4] px-6 text-xs"
+                  className="text-black font-semibold px-6 text-xs cursor-pointer"
                 >
                   <span>{isAr ? "التالي →" : "Next →"}</span>
                 </Button>
@@ -1078,7 +1079,7 @@ export function EnterpriseContent({
                   type="button"
                   onClick={() => setConfigStep(1)}
                   variant="outline"
-                  className="rounded-full border-white/20 text-xs text-neutral-300 hover:text-white"
+                  className="text-xs text-neutral-300 hover:text-white cursor-pointer"
                 >
                   {isAr ? "إعادة التخصيص" : "Reset Configuration"}
                 </Button>
@@ -1428,7 +1429,7 @@ export function EnterpriseContent({
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full bg-[#49CBDC] px-8 text-black font-semibold hover:bg-[#67D6E4] shadow-[0_0_24px_rgba(73,203,220,0.35)]"
+                  className="h-12 px-9 text-black font-semibold"
                 >
                   <a href="#configurator">
                     {isAr ? "ابدأ تخصيص الحلول" : "Build Your Solution"}
@@ -1440,7 +1441,7 @@ export function EnterpriseContent({
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full border-[#49CBDC]/40 bg-[#49CBDC]/10 px-8 text-[#49CBDC] hover:bg-[#49CBDC]/20 transition-all"
+                  className="h-12 px-9"
                 >
                   <a href={BRAND_CONFIG.contact.whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />

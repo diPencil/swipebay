@@ -120,7 +120,7 @@ export function IndustryDetailContent({
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full bg-[#49CBDC] px-8 text-black font-semibold hover:bg-[#67D6E4] transition-all shadow-[0_0_24px_rgba(73,203,220,0.35)]"
+                  className="text-black font-semibold cursor-pointer"
                 >
                   <Link href="/contact">
                     {isAr ? "احجز استشارة متخصصة" : "Consult Our Specialists"}
@@ -132,7 +132,7 @@ export function IndustryDetailContent({
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full border-[#49CBDC]/40 bg-[#49CBDC]/10 px-6 text-[#49CBDC] hover:bg-[#49CBDC]/20 transition-all"
+                  className="cursor-pointer"
                 >
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />
@@ -405,7 +405,7 @@ export function IndustryDetailContent({
                         <div className="pt-4">
                           <Button
                             asChild
-                            className="rounded-full bg-[#49CBDC] text-black font-semibold hover:bg-[#67D6E4]"
+                            className="text-black font-semibold cursor-pointer"
                           >
                             <Link href={`/solutions/${cs.industrySlug}/case-studies/${cs.slug}`}>
                               {isAr ? "دراسة الحالة الكاملة" : "Read In-Depth Case Study"}
@@ -504,7 +504,7 @@ export function IndustryDetailContent({
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full bg-[#49CBDC] px-8 text-black font-semibold hover:bg-[#67D6E4]"
+                  className="text-black font-semibold cursor-pointer"
                 >
                   <Link href="/contact">
                     {isAr ? "ابدأ الآن" : "Get in Touch"}
@@ -515,7 +515,7 @@ export function IndustryDetailContent({
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full border-[#49CBDC]/40 text-[#49CBDC] hover:bg-[#49CBDC]/10"
+                  className="cursor-pointer"
                 >
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />

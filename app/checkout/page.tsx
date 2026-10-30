@@ -548,7 +548,7 @@ export default function CheckoutPage() {
                   <Button
                     key={option.id}
                     onClick={option.action}
-                    variant="outline"
+                    variant="raw"
                     className="w-full h-auto p-4 text-left liquid-glass hover:liquid-glass-enhanced transition-all duration-200 group rounded-2xl sm:p-6 bg-transparent"
                   >
                     <div className="flex items-center gap-4 w-full sm:gap-5">
@@ -591,7 +591,7 @@ export default function CheckoutPage() {
 
             <Button
               onClick={handleConfirmOrder}
-              className="w-full h-12 text-base font-semibold bg-[#49CBDC] text-black hover:bg-[#67D6E4] rounded-xl shadow-lg shadow-[#49CBDC]/20 sm:h-16 sm:text-xl sm:rounded-2xl"
+              className="w-full h-12 text-base font-semibold text-black sm:h-14 sm:text-lg cursor-pointer"
             >
               <WhatsAppIcon className="h-5 w-5 mr-2 sm:h-6 sm:w-6" />
               Send Order via WhatsApp

@@ -127,7 +127,7 @@ export function Services() {
         <Button
           asChild
           variant="outline"
-          className="rounded-full border-white/20 bg-white/5 px-8 py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/10 hover:border-[#49CBDC]/50 hover:text-[#49CBDC] transition-all"
+          className="h-11 px-8 text-xs sm:text-sm font-semibold"
         >
           <Link href="/services" className="gap-2">
             <span>{s.viewAllServices}</span>

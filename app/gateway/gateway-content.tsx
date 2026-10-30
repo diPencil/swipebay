@@ -192,7 +192,7 @@ export function GatewayContent({ locale: initialLocale, dict: initialDict }: Gat
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border-white/20 bg-white/5 px-6 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-white/10 hover:border-purple-400/50 backdrop-blur-md transition-all"
+                  className="h-10 px-6 text-xs sm:text-sm font-medium"
                 >
                   <a href="#rails" className="inline-flex items-center gap-2">
                     <span>{isAr ? "استكشف مسارات الربط" : "Explore Payment Rails"}</span>
@@ -221,11 +221,11 @@ export function GatewayContent({ locale: initialLocale, dict: initialDict }: Gat
                 />
               </div>
 
-              {/* Floating Liquid-Glass Dual-CTA Capsule */}
-              <div className="relative z-20 -mt-8 sm:-mt-10 rounded-full border border-white/20 bg-neutral-950/85 backdrop-blur-2xl p-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(73,203,220,0.25)] flex items-center gap-1.5 sm:gap-2">
+              {/* Floating Liquid-Glass Dual-CTA Capsule: Slanted Board */}
+              <div className="relative z-20 -mt-8 sm:-mt-10 slanted-board flex items-center gap-1.5 sm:gap-2">
                 <Button
                   asChild
-                  className="rounded-full bg-[#49CBDC] px-5 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-black hover:bg-[#67D6E4] shadow-[0_0_15px_rgba(73,203,220,0.4)] transition-all"
+                  className="h-8 sm:h-10 px-3.5 sm:px-6 text-xs sm:text-sm font-semibold"
                 >
                   <Link href="/contact">
                     {isAr ? "احجز استشارة معمارية" : "Request Consultation"}
@@ -235,7 +235,7 @@ export function GatewayContent({ locale: initialLocale, dict: initialDict }: Gat
                 <Button
                   asChild
                   variant="ghost"
-                  className="rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white hover:text-[#49CBDC] hover:bg-white/5 transition-all"
+                  className="h-8 sm:h-10 px-3 sm:px-5 text-xs sm:text-sm font-medium"
                 >
                   <a
                     href={whatsappUrl}
@@ -1908,7 +1908,7 @@ console.log("Hosted Payment URL:", session.url);
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full bg-[#49CBDC] px-8 text-black font-semibold hover:bg-[#67D6E4] shadow-[0_0_24px_rgba(73,203,220,0.35)]"
+                  className="h-12 px-9 text-black font-semibold"
                 >
                   <Link href="/contact">
                     {isAr ? "احجز جلسة استشارية للمدفوعات" : "Book Payment Architecture Session"}
@@ -1920,7 +1920,7 @@ console.log("Hosted Payment URL:", session.url);
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full border-[#49CBDC]/40 bg-[#49CBDC]/10 px-8 text-[#49CBDC] hover:bg-[#49CBDC]/20 transition-all"
+                  className="h-12 px-9"
                 >
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />

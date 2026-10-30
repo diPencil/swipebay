@@ -311,7 +311,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
                 <Button
                   asChild
-                  className="rounded-full bg-[#49CBDC] px-8 py-3.5 text-black font-semibold text-sm hover:bg-[#67D6E4] transition-all duration-300 shadow-[0_0_24px_rgba(73,203,220,0.35)] hover:shadow-[0_0_32px_rgba(73,203,220,0.5)] hover:scale-[1.02] cursor-pointer"
+                  className="h-11 px-8 text-black font-semibold text-sm"
                 >
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                     <WhatsAppIcon className="h-4 w-4" />
@@ -322,7 +322,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 hover:border-[#49CBDC]/50 hover:text-[#49CBDC] transition-all"
+                  className="h-11 px-8 text-sm font-semibold"
                 >
                   <Link href="/services" className="inline-flex items-center gap-2">
                     <span>{ab.heroCtaSecondary}</span>
@@ -632,7 +632,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
                     <div className="pt-2">
                       <Button
                         asChild
-                        className="rounded-full bg-[#49CBDC] px-7 py-3 text-black font-semibold text-sm hover:bg-[#67D6E4] transition-all duration-300 shadow-[0_0_24px_rgba(73,203,220,0.35)] hover:shadow-[0_0_32px_rgba(73,203,220,0.5)] cursor-pointer"
+                        className="h-11 px-8 text-black font-semibold text-sm"
                       >
                         <Link href="/contact" className="inline-flex items-center gap-2">
                           <span>{isAr ? "ابدأ شراكتك معنا" : "Partner With Swipebay"}</span>
@@ -869,7 +869,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
             <Button
               asChild
               variant="outline"
-              className="rounded-full border-white/20 bg-white/5 px-8 py-3 text-xs sm:text-sm font-semibold text-white hover:bg-white/10 hover:border-[#49CBDC]/50 hover:text-[#49CBDC] transition-all"
+              className="h-11 px-8 text-xs sm:text-sm font-semibold"
             >
               <Link href="/services" className="gap-2">
                 <span>{ab.capabilitiesCta}</span>
@@ -1280,7 +1280,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
             <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
               <Button
                 asChild
-                className="rounded-full bg-[#49CBDC] px-8 py-3.5 text-sm font-semibold text-black shadow-[0_0_24px_rgba(73,203,220,0.35)] hover:bg-[#67D6E4] hover:scale-[1.02] transition-all"
+                className="h-11 px-8 text-sm font-semibold text-black"
               >
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="gap-2">
                   <WhatsAppIcon className="h-4 w-4" />
@@ -1291,7 +1291,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full border-white/20 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/10 hover:border-purple-400/50 transition-all"
+                className="h-11 px-8 text-sm font-semibold"
               >
                 <a href={emailUrl} className="gap-2">
                   <Mail className="h-4 w-4 text-[#49CBDC]" />
@@ -1302,7 +1302,7 @@ export function AboutContent({ locale, dict }: AboutContentProps) {
               <Button
                 asChild
                 variant="ghost"
-                className="rounded-full px-6 py-3.5 text-sm font-semibold text-neutral-300 hover:text-white hover:bg-white/5 transition-all"
+                className="h-11 px-6 text-sm font-semibold"
               >
                 <Link href="/services" className="gap-2">
                   <span>{ab.ctaServices}</span>

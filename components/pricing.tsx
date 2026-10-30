@@ -80,11 +80,8 @@ export function Pricing() {
                   <div className="pt-2">
                     <Button
                       asChild
-                      className={`w-full rounded-full py-2.5 text-xs font-semibold transition-all ${
-                        isPopular
-                          ? "bg-[#49CBDC] text-black hover:bg-[#67D6E4] shadow-[0_0_20px_rgba(73,203,220,0.3)] hover:scale-[1.01]"
-                          : "bg-white/10 text-white hover:bg-white/20 border border-white/15"
-                      }`}
+                      variant={isPopular ? "default" : "outline"}
+                      className="w-full h-10 text-xs font-semibold"
                     >
                       <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="gap-1.5">
                         <span>{model.ctaLabel}</span>

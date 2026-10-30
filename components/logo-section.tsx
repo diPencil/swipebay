@@ -105,7 +105,7 @@ export function LogoSection() {
           </div>
 
           {/* CTA Button */}
-          <Button className="group rounded-full bg-gradient-to-r from-purple-600 to-purple-500 px-8 py-3 text-white shadow-lg shadow-purple-500/25 transition-all hover:shadow-xl hover:shadow-purple-500/40 hover:scale-105">
+          <Button variant="purple" className="group cursor-pointer">
             Try now for free
             <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>

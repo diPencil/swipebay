@@ -47,7 +47,7 @@ export default async function NotFound() {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button
               asChild
-              className="rounded-full bg-[#49CBDC] px-6 py-2.5 text-xs sm:text-sm font-semibold text-black shadow-[0_0_20px_rgba(73,203,220,0.35)] hover:bg-[#67D6E4] transition-all"
+              className="text-xs sm:text-sm font-semibold"
             >
               <Link href="/" className="gap-2">
                 <Home className="h-4 w-4" />
@@ -58,7 +58,7 @@ export default async function NotFound() {
             <Button
               asChild
               variant="outline"
-              className="rounded-full border-white/20 bg-white/5 px-6 py-2.5 text-xs sm:text-sm font-semibold text-white hover:bg-white/10 hover:border-purple-400/50 transition-all"
+              className="text-xs sm:text-sm font-semibold"
             >
               <Link href="/services" className="gap-2">
                 <span>{dict.nav.services}</span>

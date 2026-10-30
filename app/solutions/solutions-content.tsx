@@ -146,7 +146,7 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border-white/20 bg-white/5 px-6 py-2.5 text-xs sm:text-sm font-medium text-white hover:bg-white/10 hover:border-purple-400/50 backdrop-blur-md transition-all"
+                  className="text-xs sm:text-sm font-medium"
                 >
                   <a href="#industries" className="inline-flex items-center gap-2">
                     <span>{isAr ? "استكشف حلول القطاعات" : "Explore Sector Blueprints"}</span>
@@ -175,11 +175,11 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
                 />
               </div>
 
-              {/* Floating Liquid-Glass Dual-CTA Capsule */}
-              <div className="relative z-20 -mt-8 sm:-mt-10 rounded-full border border-white/20 bg-neutral-950/85 backdrop-blur-2xl p-1.5 shadow-[0_15px_40px_rgba(0,0,0,0.9),0_0_30px_rgba(73,203,220,0.25)] flex items-center gap-1.5 sm:gap-2">
+              {/* Floating Liquid-Glass Dual-CTA Capsule: Slanted Board */}
+              <div className="relative z-20 -mt-8 sm:-mt-10 slanted-board flex items-center gap-1.5 sm:gap-2">
                 <Button
                   asChild
-                  className="rounded-full bg-[#49CBDC] px-5 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-black hover:bg-[#67D6E4] shadow-[0_0_15px_rgba(73,203,220,0.4)] transition-all"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   <Link href="/contact">
                     {isAr ? "ابدأ مشروعك" : "Start Your Project"}
@@ -189,7 +189,7 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
                 <Button
                   asChild
                   variant="ghost"
-                  className="rounded-full px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-white hover:text-[#49CBDC] hover:bg-white/5 transition-all"
+                  className="text-xs sm:text-sm font-medium"
                 >
                   <a
                     href={whatsappUrl}
@@ -1143,13 +1143,15 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
                           ))}
                         </div>
 
-                        <Link
-                          href={`/solutions/${cs.industrySlug}/case-studies/${cs.slug}`}
-                          className="inline-flex items-center gap-2 rounded-full bg-[#49CBDC] px-5 py-2 text-xs sm:text-sm font-semibold text-black hover:bg-[#67D6E4] shadow-[0_0_16px_rgba(73,203,220,0.3)] transition-all duration-300"
+                        <Button
+                          asChild
+                          className="text-xs sm:text-sm font-semibold"
                         >
-                          <span>{isAr ? "استعرض تفاصيل المشروع" : "Explore Case Study"}</span>
-                          <ArrowIcon className="h-3.5 w-3.5" />
-                        </Link>
+                          <Link href={`/solutions/${cs.industrySlug}/case-studies/${cs.slug}`}>
+                            <span>{isAr ? "استعرض تفاصيل المشروع" : "Explore Case Study"}</span>
+                            <ArrowIcon className="h-3.5 w-3.5" />
+                          </Link>
+                        </Button>
                       </div>
                     </div>
                   </div>
@@ -1209,7 +1211,7 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
                 <Button
                   asChild
                   size="lg"
-                  className="rounded-full bg-[#49CBDC] px-8 text-black font-semibold hover:bg-[#67D6E4] transition-all duration-300 shadow-[0_0_24px_rgba(73,203,220,0.35)]"
+                  className="text-black font-semibold cursor-pointer"
                 >
                   <Link href="/contact">
                     {isAr ? "احجز جلسة استشارية" : "Book Architecture Session"}
@@ -1221,7 +1223,7 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
                   asChild
                   variant="outline"
                   size="lg"
-                  className="rounded-full border-[#49CBDC]/40 bg-[#49CBDC]/10 px-8 text-[#49CBDC] hover:bg-[#49CBDC]/20 hover:border-[#49CBDC] transition-all"
+                  className="cursor-pointer"
                 >
                   <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                     <WhatsAppIcon className="mr-2 rtl:mr-0 rtl:ml-2 h-4 w-4" />

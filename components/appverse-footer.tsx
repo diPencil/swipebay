@@ -112,7 +112,7 @@ export function AppverseFooter() {
               <div className="flex flex-wrap items-center gap-3 pt-1">
                 <Button
                   asChild
-                  className="rounded-full bg-[#49CBDC] px-6 py-2.5 text-xs sm:text-sm font-semibold text-black shadow-[0_0_20px_rgba(73,203,220,0.35)] hover:bg-[#67D6E4] hover:scale-[1.02] transition-all"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   <Link href="/enterprise">
                     {locale === "ar" ? "استكشف حلول الشركات" : "Explore Enterprise Solutions"}
@@ -122,7 +122,7 @@ export function AppverseFooter() {
                 <Button
                   asChild
                   variant="outline"
-                  className="rounded-full border-white/20 bg-white/5 text-xs sm:text-sm text-white hover:bg-white/10 hover:border-purple-400/50"
+                  className="text-xs sm:text-sm"
                 >
                   <a href={BRAND_CONFIG.contact.whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2">
                     <WhatsAppIcon className="h-4 w-4" />
