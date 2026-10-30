@@ -166,7 +166,8 @@ function PhoneCard({
   videoSrc: string
   isRTL?: boolean
 }) {
-  const iconSrc = badgeIcon || (badge.toLowerCase().includes("superfeliz") ? "/technologies/superfeliz.svg" : null)
+  const isSuperFeliz = badge.toLowerCase().includes("superfeliz")
+  const iconSrc = badgeIcon || (isSuperFeliz ? "/technologies/superfeliz.svg" : null)
 
   return (
     <div className="relative rounded-[20px] sm:rounded-[28px] liquid-glass border border-white/10 p-1.5 sm:p-2 shadow-xl hover:border-purple-400/40 transition-all duration-300 group">
@@ -199,7 +200,9 @@ function PhoneCard({
             </p>
             <div className="pt-0.5 sm:pt-1">
               <span className="inline-flex items-center gap-1 sm:gap-1.5 rounded-full bg-[#49CBDC]/10 px-1.5 sm:px-2 py-0.5 text-[9px] sm:text-[10px] font-medium uppercase tracking-wider text-[#49CBDC] border border-[#49CBDC]/30 backdrop-blur-sm">
-                {iconSrc ? (
+                {isSuperFeliz ? (
+                  <SuperFelizIcon className="h-2.5 w-2.5 sm:h-3 sm:w-3 shrink-0 fill-current text-[#49CBDC]" />
+                ) : iconSrc ? (
                   <Image
                     src={iconSrc}
                     alt={badge}
@@ -217,5 +220,18 @@ function PhoneCard({
         </div>
       </div>
     </div>
+  )
+}
+
+function SuperFelizIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 608 619.3"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M525.2,318.1l79-23.2-80.6-17.2c-66-13.9-103.3-84.3-77.8-146.8l31.1-76.3-63.6,52.4c-52.2,42.9-130.4,28.1-163.4-30.8L209.7,4.4l1.2,82.4c1,67.4-59.2,119.4-125.9,108.6L3.8,182l65.3,50.4c53.4,41.2,56.5,120.8,6.4,166.1l-61.1,55.2,80-19.5c65.6-16,129.7,31.1,133.8,98.5l5.1,82.2,34.6-74.8c28.3-61.3,105.2-82,160.5-43.2l67.4,47.3-36.9-73.7c-30.2-60.4,1.6-133.4,66.3-152.5ZM334.3,355.6c-19.2,5.6-28.7,27.3-19.7,45.2l11,21.8-20-14c-16.4-11.5-39.2-5.3-47.6,12.8l-10.3,22.2-1.5-24.4c-1.2-20-20.3-34-39.7-29.3l-23.7,5.8,18.1-16.4c14.8-13.4,13.9-37-1.9-49.3l-19.3-14.9,24.1,3.9c19.7,3.3,37.6-12.1,37.3-32.1l-.3-24.5,11.9,21.3c9.8,17.5,33,21.9,48.4,9.1l18.9-15.6-9.2,22.7c-7.6,18.6,3.5,39.5,23.1,43.6l23.9,5.1-23.4,7Z" />
+    </svg>
   )
 }
