@@ -12,6 +12,10 @@ export const dynamic = "force-static"
 
 export const metadata: Metadata = {
   title: "3D Product Rendering",
+  robots: {
+    index: false,
+    follow: false,
+  },
 }
 
 export default function Page() {

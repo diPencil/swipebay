@@ -11,15 +11,15 @@ import { LanguageProvider, isRTL } from "@/lib/i18n"
 import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
+import { CANONICAL_ORIGIN } from "@/lib/seo"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
   viewportFit: "cover",
+  themeColor: "#000000",
 }
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -27,36 +27,42 @@ export async function generateMetadata(): Promise<Metadata> {
   const dict = getDictionarySync(locale)
 
   return {
-    metadataBase: new URL(BRAND_CONFIG.url),
+    metadataBase: new URL(CANONICAL_ORIGIN),
     title: {
       default: dict.meta.title,
       template: `%s | ${BRAND_CONFIG.name}`,
     },
     description: dict.meta.description,
     keywords: dict.meta.keywords.split(", "),
-    authors: [{ name: BRAND_CONFIG.name, url: BRAND_CONFIG.url }],
-    creator: BRAND_CONFIG.legalName,
+    authors: [{ name: BRAND_CONFIG.name, url: CANONICAL_ORIGIN }],
+    creator: BRAND_CONFIG.name,
+    manifest: "/manifest.webmanifest",
     icons: {
-      icon: BRAND_CONFIG.assets.favicon,
-      shortcut: BRAND_CONFIG.assets.favicon,
-      apple: BRAND_CONFIG.assets.favicon,
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.png", type: "image/png", sizes: "192x192" },
+      ],
+      shortcut: "/favicon.ico",
+      apple: [
+        { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      ],
     },
     alternates: {
-      canonical: BRAND_CONFIG.url,
+      canonical: CANONICAL_ORIGIN,
     },
     openGraph: {
       type: "website",
       locale: locale === "ar" ? "ar_EG" : "en_US",
-      url: BRAND_CONFIG.url,
+      url: CANONICAL_ORIGIN,
       title: dict.meta.ogTitle,
       description: dict.meta.ogDescription,
       siteName: BRAND_CONFIG.name,
       images: [
         {
-          url: BRAND_CONFIG.assets.logoGrid,
+          url: `${CANONICAL_ORIGIN}${BRAND_CONFIG.assets.logoGrid}`,
           width: 1200,
           height: 630,
-          alt: `${BRAND_CONFIG.name} Logo`,
+          alt: `${BRAND_CONFIG.name} — ${dict.meta.title}`,
         },
       ],
     },
@@ -64,7 +70,24 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: dict.meta.ogTitle,
       description: dict.meta.ogDescription,
-      images: [BRAND_CONFIG.assets.logoGrid],
+      images: [`${CANONICAL_ORIGIN}${BRAND_CONFIG.assets.logoGrid}`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    verification: {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+      other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+        ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+        : undefined,
     },
   }
 }
@@ -86,19 +109,10 @@ export default async function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Font Preload */}
-        <link
-          rel="preload"
-          href="/fonts/Inter.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-          fetchPriority="high"
-        />
-
-        {/* Favicon */}
-        <link rel="icon" type="image/png" href={BRAND_CONFIG.assets.favicon} />
-        <link rel="apple-touch-icon" href={BRAND_CONFIG.assets.favicon} />
+        {/* Favicon & Web App Icons */}
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
         {/* Dynamic Favicon Script */}
         <Script id="dynamic-favicon" strategy="beforeInteractive">

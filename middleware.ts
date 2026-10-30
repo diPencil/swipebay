@@ -24,6 +24,15 @@ function getPreferredLocale(request: NextRequest): string {
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
+  // 0. Canonical host redirect: normalize www.swipebay.net to canonical swipebay.net
+  const host = request.headers.get("host") || ""
+  if (host.startsWith("www.swipebay.net")) {
+    const canonicalUrl = new URL(request.url)
+    canonicalUrl.host = "swipebay.net"
+    canonicalUrl.protocol = "https:"
+    return NextResponse.redirect(canonicalUrl, 308)
+  }
+
   // 1. Admin authentication check (preserve existing functionality)
   if (
     pathname === "/admin" ||

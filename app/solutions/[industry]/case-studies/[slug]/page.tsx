@@ -6,11 +6,15 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import {
-  getAllCaseStudies,
+  getPublishedCaseStudies,
   getCaseStudyBySlug,
   getIndustryBySlug,
 } from "@/lib/solutions"
 import { CaseStudyContent } from "./case-study-content"
+import {
+  constructPageMetadata,
+  JsonLd,
+} from "@/lib/seo"
 
 interface CaseStudyPageProps {
   params: Promise<{
@@ -20,7 +24,7 @@ interface CaseStudyPageProps {
 }
 
 export async function generateStaticParams() {
-  const caseStudies = getAllCaseStudies()
+  const caseStudies = getPublishedCaseStudies()
   return caseStudies.map((cs) => ({
     industry: cs.industrySlug,
     slug: cs.slug,
@@ -30,7 +34,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: CaseStudyPageProps): Promise<Metadata> {
   const resolvedParams = await params
   const caseStudy = getCaseStudyBySlug(resolvedParams.slug)
-  if (!caseStudy) {
+  if (!caseStudy || !caseStudy.isPublished) {
     return {}
   }
 
@@ -39,44 +43,22 @@ export async function generateMetadata({ params }: CaseStudyPageProps): Promise<
   const csData = caseStudy[locale]
 
   const title = `${csData.title} | ${caseStudy.clientName}`
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
   const description = csData.subtitle
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/solutions/${caseStudy.industrySlug}/case-studies/${caseStudy.slug}`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/solutions/${caseStudy.industrySlug}/case-studies/${caseStudy.slug}`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "article",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | ${csData.title}`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: `/solutions/${caseStudy.industrySlug}/case-studies/${caseStudy.slug}`,
+    locale,
+    ogType: "article",
+    noindex: true,
+  })
 }
 
 export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
   const resolvedParams = await params
   const caseStudy = getCaseStudyBySlug(resolvedParams.slug)
-  if (!caseStudy) {
+  if (!caseStudy || !caseStudy.isPublished) {
     notFound()
   }
 
@@ -93,55 +75,31 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": [
+    "@type": "BreadcrumbList",
+    itemListElement: [
       {
-        "@type": "Article",
-        "@id": `${BRAND_CONFIG.url}/solutions/${industry.slug}/case-studies/${caseStudy.slug}/#article`,
-        headline: csData.title,
-        description: csData.subtitle,
-        publisher: {
-          "@type": "Organization",
-          name: BRAND_CONFIG.name,
-          url: BRAND_CONFIG.url,
-          logo: `${BRAND_CONFIG.url}${BRAND_CONFIG.assets.logoDark}`,
-        },
-        author: {
-          "@type": "Organization",
-          name: BRAND_CONFIG.name,
-        },
-        about: {
-          "@type": "Organization",
-          name: caseStudy.clientName,
-        },
+        "@type": "ListItem",
+        position: 1,
+        name: isAr ? "الرئيسية" : "Home",
+        item: BRAND_CONFIG.url,
       },
       {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: isAr ? "الرئيسية" : "Home",
-            item: BRAND_CONFIG.url,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: isAr ? "الحلول" : "Solutions",
-            item: `${BRAND_CONFIG.url}/solutions`,
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            name: indData.title,
-            item: `${BRAND_CONFIG.url}/solutions/${industry.slug}`,
-          },
-          {
-            "@type": "ListItem",
-            position: 4,
-            name: csData.title,
-            item: `${BRAND_CONFIG.url}/solutions/${industry.slug}/case-studies/${caseStudy.slug}`,
-          },
-        ],
+        "@type": "ListItem",
+        position: 2,
+        name: isAr ? "الحلول" : "Solutions",
+        item: `${BRAND_CONFIG.url}/solutions`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: indData.title,
+        item: `${BRAND_CONFIG.url}/solutions/${industry.slug}`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: csData.title,
+        item: `${BRAND_CONFIG.url}/solutions/${industry.slug}/case-studies/${caseStudy.slug}`,
       },
     ],
   }
@@ -163,10 +121,7 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd id={`case-study-${caseStudy.slug}-schema`} data={structuredData} />
     </>
   )
 }

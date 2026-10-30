@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n/config"
 import type { Dictionary } from "@/lib/i18n/types"
 import {
   IndustryDefinition,
-  getCaseStudiesByIndustry,
+  getPublishedCaseStudiesByIndustry,
   getAllIndustries,
 } from "@/lib/solutions"
 import { BRAND_CONFIG } from "@/lib/brand"
@@ -53,7 +53,7 @@ export function IndustryDetailContent({
   const ArrowDiag = isAr ? ArrowUpLeft : ArrowUpRight
 
   const indData = industry[locale]
-  const relatedCaseStudies = getCaseStudiesByIndustry(industry.slug)
+  const relatedCaseStudies = getPublishedCaseStudiesByIndustry(industry.slug)
   const allIndustries = getAllIndustries()
 
   const getIndustryIcon = (iconName: string) => {

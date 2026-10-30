@@ -5,6 +5,11 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { EnterpriseContent } from "./enterprise-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
@@ -13,41 +18,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = isAr
     ? "حلول الشركات وحزم الأعمال المخصصة"
     : "Enterprise Solutions & Custom Packages"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
   const description = isAr
     ? "حلول رقمية متكاملة وحزم أعمال مخصصة للمؤسسات تجمع بين هندسة البرمجيات، الهوية البصرية، الذكاء الاصطناعي، الأتمتة، والبنية السحابية مع أداة تفاعلية لتخصيص الحلول وطلب عروض الأسعار."
     : "Flexible B2B enterprise solutions and multi-service packages unifying bespoke engineering, brand architecture, applied AI, workflow automation, and resilient cloud infrastructure with an interactive solution configurator."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/enterprise`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/enterprise`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | Enterprise Solutions`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/enterprise",
+    locale,
+  })
 }
 
 export default async function EnterprisePage() {
@@ -104,10 +84,7 @@ export default async function EnterprisePage() {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd id="enterprise-structured-data" data={structuredData} />
     </>
   )
 }

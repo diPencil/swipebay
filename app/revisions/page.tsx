@@ -5,6 +5,7 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { RevisionsContent } from "./revisions-content"
+import { constructPageMetadata } from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
@@ -13,41 +14,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = isAr
     ? "سياسة التعديلات والمراجعات الهندسية"
     : "Revision Policy & Iteration Framework"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
   const description = isAr
-    ? "تعرف على سياسة التعديلات والمراجعات المرحلية في سويب باي، والتزامنا بالشفافية المطلقة، وحماية نطاق العمل، والضمان التشغيلي بعد الإطلاق."
-    : "Review SWIPEBAY's structured revision policy, sprint-based iteration frameworks, milestone sign-offs, and inclusive operational warranties."
+    ? "تعرف على إرشادات التعديلات والمراجعات المرحلية في سويب باي، وإدارة نطاق العمل المشترك، والدعم الفني بعد تسليم المشاريع."
+    : "Review SWIPEBAY's structured project revision guidelines, collaborative review milestones, scope management, and post-delivery support framework."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/revisions`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/revisions`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} Revision Policy`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/revisions",
+    locale,
+  })
 }
 
 export default async function RevisionPolicyPage() {

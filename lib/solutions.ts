@@ -59,6 +59,7 @@ export interface CaseStudyDefinition {
   status: "completed" | "active"
   technologies: string[]
   metrics: CaseStudyMetric[]
+  isPublished?: boolean
   en: CaseStudyLocalizedContent
   ar: CaseStudyLocalizedContent
 }
@@ -417,6 +418,7 @@ export const SWIPEBAY_CASE_STUDIES: CaseStudyDefinition[] = [
     isClientPublic: true,
     image: "/images/services/branding.jpg",
     status: "completed",
+    isPublished: false,
     technologies: ["Next.js App Router", "TypeScript", "React Native", "PostgreSQL", "Stripe & Paymob Gateway", "Cloudflare CDN"],
     metrics: [
       { value: "+30%", label: "Repeat Bookings" },
@@ -480,6 +482,7 @@ export const SWIPEBAY_CASE_STUDIES: CaseStudyDefinition[] = [
     isClientPublic: true,
     image: "/images/services/consulting.jpg",
     status: "completed",
+    isPublished: false,
     technologies: ["Next.js", "Node.js Microservices", "PostgreSQL", "Redis", "WebSockets", "Thermal Printer & KDS APIs"],
     metrics: [
       { value: "45%", label: "Food Waste Cut" },
@@ -543,6 +546,7 @@ export const SWIPEBAY_CASE_STUDIES: CaseStudyDefinition[] = [
     isClientPublic: false,
     image: "/images/services/media-production.jpg",
     status: "completed",
+    isPublished: false,
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "AWS S3 & CloudFront", "HLS Video Streaming", "Docker"],
     metrics: [
       { value: "3x", label: "Completion Rate" },
@@ -606,6 +610,7 @@ export const SWIPEBAY_CASE_STUDIES: CaseStudyDefinition[] = [
     isClientPublic: false,
     image: "/images/services/web-app.jpg",
     status: "completed",
+    isPublished: false,
     technologies: ["Next.js", "TypeScript", "PostgreSQL", "Bespoke Webhooks", "SendGrid & WhatsApp API", "AES-256 Encryption"],
     metrics: [
       { value: "50%", label: "Time Saved" },
@@ -678,10 +683,18 @@ export function getAllCaseStudies(): CaseStudyDefinition[] {
   return SWIPEBAY_CASE_STUDIES
 }
 
+export function getPublishedCaseStudies(): CaseStudyDefinition[] {
+  return SWIPEBAY_CASE_STUDIES.filter((cs) => cs.isPublished === true)
+}
+
 export function getCaseStudyBySlug(slug: string): CaseStudyDefinition | undefined {
   return SWIPEBAY_CASE_STUDIES.find((cs) => cs.slug === slug)
 }
 
 export function getCaseStudiesByIndustry(industrySlug: string): CaseStudyDefinition[] {
   return SWIPEBAY_CASE_STUDIES.filter((cs) => cs.industrySlug === industrySlug)
+}
+
+export function getPublishedCaseStudiesByIndustry(industrySlug: string): CaseStudyDefinition[] {
+  return SWIPEBAY_CASE_STUDIES.filter((cs) => cs.industrySlug === industrySlug && cs.isPublished === true)
 }

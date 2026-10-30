@@ -5,47 +5,27 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { AboutContent } from "./about-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
   const isAr = locale === "ar"
 
   const title = isAr ? "من نحن | شركة سويب باي" : "About Us | The Company Behind The Work"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
   const description = isAr
     ? "تعرف على سويب باي: شركة متكاملة للحلول الرقمية والتكنولوجيا الإبداعية تجمع بين وضوح الرؤية الاستراتيجية، الهندسة البرمجية المتقدمة، والهويات البصرية الراسخة."
     : "Discover SWIPEBAY: A multidisciplinary digital solutions and creative technology company bridging strategy, bespoke software engineering, and distinctive brand architecture."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/about`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/about`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | About Us`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/about",
+    locale,
+  })
 }
 
 export default async function AboutPage() {
@@ -74,7 +54,6 @@ export default async function AboutPage() {
         "@type": "Organization",
         "@id": `${BRAND_CONFIG.url}/#organization`,
         name: BRAND_CONFIG.name,
-        legalName: BRAND_CONFIG.legalName,
         url: BRAND_CONFIG.url,
         logo: `${BRAND_CONFIG.url}${BRAND_CONFIG.assets.logoGrid}`,
         description: BRAND_CONFIG.mission[locale],
@@ -117,12 +96,7 @@ export default async function AboutPage() {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      <JsonLd id="about-structured-data" data={structuredData} />
     </>
   )
 }

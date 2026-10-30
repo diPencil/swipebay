@@ -12,6 +12,10 @@ export const metadata = {
   title: "Architectural Visualization Studio | 3D CGI Services by Swipebay",
   description:
     "Explore Swipebay’s architectural visualization services - from photoreal 3D renders to cinematic CGI walkthroughs that showcase your designs with stunning realism.",
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: {
     canonical: "https://swipebay.net/3D-architecture-visualization-studio",
   },

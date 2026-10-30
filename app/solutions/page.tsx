@@ -6,49 +6,29 @@ import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { getAllIndustries } from "@/lib/solutions"
 import { SolutionsContent } from "./solutions-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
   const isAr = locale === "ar"
 
   const title = isAr
-    ? "حلول القطاعات والمشاريع المنفذة"
-    : "Industry Solutions & Deployed Case Studies"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
+    ? "حلول القطاعات والمعمارية الرقمية | SWIPEBAY"
+    : "Industry Solutions & Digital Architectures | SWIPEBAY"
   const description = isAr
-    ? "اكتشف حلول سويب باي المتخصصة للقطاعات الحيوية: الضيافة والسياحة، المطاعم والأغذية، التعليم الرقمي، والخدمات المهنية، مع مشاريع واقعية ونتائج مثبتة."
-    : "Explore SWIPEBAY's domain-specific digital solutions for Hospitality, Restaurants, Education, and Professional Services with verified enterprise case studies and measurable results."
+    ? "اكتشف حلول ومعماريات سويب باي الرقمية المصممة خصيصاً لقطاعات الضيافة، المطاعم والأغذية، التعليم، والخدمات المهنية."
+    : "Explore SWIPEBAY's domain-specific digital systems and specialized architectures tailored for hospitality, restaurants and F&B, education, and professional services."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/solutions`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/solutions`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | Industry Solutions`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/solutions",
+    locale,
+  })
 }
 
 export default async function SolutionsPage() {
@@ -117,10 +97,7 @@ export default async function SolutionsPage() {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd id="solutions-structured-data" data={structuredData} />
     </>
   )
 }

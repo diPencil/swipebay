@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n/config"
 import type { Dictionary } from "@/lib/i18n/types"
 import {
   getAllIndustries,
-  getAllCaseStudies,
+  getPublishedCaseStudies,
   IndustryDefinition,
   CaseStudyDefinition,
 } from "@/lib/solutions"
@@ -54,7 +54,7 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
   const ArrowDiag = isAr ? ArrowUpLeft : ArrowUpRight
 
   const industries = getAllIndustries()
-  const caseStudies = getAllCaseStudies()
+  const caseStudies = getPublishedCaseStudies()
 
   // Icon map for industries
   const getIndustryIcon = (iconName: string) => {
@@ -962,7 +962,8 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
       {/* =========================================================================
           SECTION 04: SELECTED CASE STUDIES & REAL RESULTS
           ========================================================================= */}
-      <section id="case-studies" className="relative scroll-mt-24">
+      {filteredCaseStudies.length > 0 && (
+        <section id="case-studies" className="relative scroll-mt-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div className="space-y-4 max-w-2xl">
@@ -1161,6 +1162,7 @@ export function SolutionsContent({ locale: initialLocale, dict: initialDict }: S
           </div>
         </div>
       </section>
+      )}
 
       {/* =========================================================================
           SECTION 05: CONSULTATION CTA

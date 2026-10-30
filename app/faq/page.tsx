@@ -5,6 +5,11 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { FaqContent } from "./faq-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
@@ -13,40 +18,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = isAr
     ? "الأسئلة الشائعة وقاعدة المعرفة التقنية"
     : "FAQ & Technical Knowledge Base"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
   const description = isAr
-    ? "إجابات شاملة ومفصلة حول خدمات سويب باي، منهجية التنفيذ البرمجي، تكامل الذكاء الاصطناعي، الاستضافة السحابية، ونماذج التعاقد والشفافية."
-    : "Explore comprehensive answers regarding SWIPEBAY's service scope, engineering workflows, applied AI integration, hosting SLA, and commercial transparency."
+    ? "إجابات واضحة حول خدمات سويب باي، منهجية التنفيذ الهندسي، تكامل الذكاء الاصطناعي، الحلول السحابية، ونماذج التعاقد والعمل المشترك."
+    : "Explore answers regarding SWIPEBAY's digital services, engineering workflows, AI integration, managed cloud infrastructure, and project engagement models."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/faq`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/faq`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} FAQ`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/faq",
+    locale,
+  })
 }
 
 export default async function FAQPage() {
@@ -81,12 +62,7 @@ export default async function FAQPage() {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      <JsonLd id="faq-structured-data" data={structuredData} />
     </>
   )
 }

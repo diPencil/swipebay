@@ -7,6 +7,11 @@ import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { getAllIndustries, getIndustryBySlug } from "@/lib/solutions"
 import { IndustryDetailContent } from "../industry-detail-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 interface IndustryPageProps {
   params: Promise<{
@@ -33,38 +38,14 @@ export async function generateMetadata({ params }: IndustryPageProps): Promise<M
   const indData = industry[locale]
 
   const title = `${indData.title} | ${isAr ? "حلول متخصصة" : "Domain Solutions"}`
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
   const description = indData.shortDescription
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/solutions/${industry.slug}`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/solutions/${industry.slug}`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | ${indData.title}`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: `/solutions/${industry.slug}`,
+    locale,
+  })
 }
 
 export default async function IndustryPage({ params }: IndustryPageProps) {
@@ -144,10 +125,7 @@ export default async function IndustryPage({ params }: IndustryPageProps) {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd id={`industry-${industry.slug}-schema`} data={structuredData} />
     </>
   )
 }

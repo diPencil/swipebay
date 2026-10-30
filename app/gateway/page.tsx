@@ -5,49 +5,29 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { GatewayContent } from "./gateway-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
   const isAr = locale === "ar"
 
   const title = isAr
-    ? "هندسة وتكامل بوابات الدفع الإلكتروني"
-    : "B2B Payment Gateway Integration & Engineering"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
+    ? "تكامل وهندسة بوابات الدفع الإلكتروني | SWIPEBAY"
+    : "B2B Payment Gateway Integration & Engineering | SWIPEBAY"
   const description = isAr
-    ? "خدمات هندسية متقدمة لربط وتكامل بوابات الدفع الإلكتروني (Paymob، فوري، Stripe، تابي، تمارا، أبل باي) مع منصات الويب وتطبيقات الجوال ونقاط البيع في مصر والخليج."
-    : "Enterprise payment gateway engineering, multi-acquirer checkout flows, tokenization, and automated reconciliation connecting platforms to Paymob, Fawry, Stripe, Tabby, and Apple Pay."
+    ? "خدمات هندسية متخصصة لربط وتكامل بوابات الدفع الإلكتروني والتحصيل الرقمي مع منصات الويب وتطبيقات الجوال ومتاجر الشركات."
+    : "Professional technical integration and engineering services connecting digital platforms, web applications, and enterprise systems to modern digital payment gateways and merchant APIs."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/gateway`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/gateway`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | Payment Gateway Engineering`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/gateway",
+    locale,
+  })
 }
 
 export default async function GatewayPage() {
@@ -61,10 +41,10 @@ export default async function GatewayPage() {
       {
         "@type": "Service",
         "@id": `${BRAND_CONFIG.url}/gateway/#service`,
-        name: isAr ? "هندسة بوابات الدفع الإلكتروني" : "B2B Payment Gateway Integration Services",
+        name: isAr ? "خدمات تكامل بوابات الدفع الإلكتروني" : "B2B Payment Gateway Integration Services",
         description: isAr
-          ? "تطوير ودمج بوابات الدفع والتحصيل الرقمي متعددة القنوات في مصر والخليج."
-          : "Enterprise payment gateway engineering, checkout orchestration, and financial webhook reconciliation.",
+          ? "خدمات هندسية واستشارية لدمج وربط بوابات الدفع الرقمية مع منصات وتطبيقات الأعمال."
+          : "Professional engineering and technical integration services for digital payment gateways and merchant commerce workflows.",
         provider: {
           "@type": "Organization",
           name: BRAND_CONFIG.name,
@@ -104,10 +84,7 @@ export default async function GatewayPage() {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
+      <JsonLd id="gateway-structured-data" data={structuredData} />
     </>
   )
 }

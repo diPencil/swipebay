@@ -186,7 +186,7 @@ export function GatewayContent({ locale: initialLocale, dict: initialDict }: Gat
               <p className="text-xs sm:text-sm text-neutral-300 font-light leading-relaxed">
                 {isAr
                   ? "نصمم مسارات دفع موحدة لربط منصتك بأهم بوابات الدفع في مصر والشرق الأوسط، مع معالجة لحظية، أمان مشفر، وتوفيق مالي مؤتمت بالكامل."
-                  : "Streamline multi-acquirer checkouts, cross-border settlement, and automated reconciliation across Egypt and the GCC with sub-second latency and 99.98% SLA."}
+                  : "Streamline checkout workflows, multi-channel payment flows, and automated reconciliation across Egypt and the GCC engineered for high reliability and seamless customer journeys."}
               </p>
               <div>
                 <Button

@@ -5,6 +5,7 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { TermsContent } from "./terms-content"
+import { constructPageMetadata } from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
@@ -13,41 +14,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = isAr
     ? "الشروط والأحكام والاتفاقية القانونية"
     : "Terms & Conditions & Master Agreement"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
   const description = isAr
-    ? "تعرف على الشروط والأحكام والاتفاقية القانونية المعتمدة لشركة سويب باي، والتزامنا بنقل الملكية الفكرية بنسبة 100%، واتفاقيات السرية الثنائية، ومستويات الخدمة السحابية."
-    : "Review SWIPEBAY's master commercial agreement, 100% intellectual property assignment, bilateral non-disclosure protection, milestone governance, and cloud service level guarantees."
+    ? "تعرف على الشروط والأحكام العامة والاتفاقيات التجارية وسياسات سرية المعلومات وإرشادات التعامل والتعاقد مع سويب باي."
+    : "Review SWIPEBAY's standard terms and conditions, commercial agreements, project milestones, confidential disclosure policies, and service engagement guidelines."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/t&c`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/t&c`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} Terms & Conditions`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/t&c",
+    locale,
+  })
 }
 
 export default async function TermsAndConditionsPage() {

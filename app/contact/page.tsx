@@ -5,6 +5,11 @@ import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
 import { BRAND_CONFIG } from "@/lib/brand"
 import { ContactContent } from "./contact-content"
+import {
+  constructPageMetadata,
+  buildBreadcrumbJsonLd,
+  JsonLd,
+} from "@/lib/seo"
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getServerLocale()
@@ -13,41 +18,16 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = isAr
     ? "تواصل معنا | شركة سويب باي للهندسة الرقمية"
     : "Contact Us | SWIPEBAY Digital Solutions Company"
-  const fullTitle = `${title} | ${BRAND_CONFIG.name}`
-
   const description = isAr
     ? "تواصل مباشرة مع شركة سويب باي: استشارة معمارية متقدمة لتطوير منصات الويب والموبايل، بوابات الدفع، الذكاء الاصطناعي، والبنية السحابية في مصر والشرق الأوسط."
     : "Connect directly with SWIPEBAY Company. Direct consultation with principal engineers, software architects, and brand directors for bespoke digital systems across Egypt and the MENA region."
 
-  return {
+  return constructPageMetadata({
     title,
     description,
-    alternates: {
-      canonical: `${BRAND_CONFIG.url}/contact`,
-    },
-    openGraph: {
-      title: fullTitle,
-      description,
-      url: `${BRAND_CONFIG.url}/contact`,
-      siteName: BRAND_CONFIG.name,
-      locale: isAr ? "ar_EG" : "en_US",
-      type: "website",
-      images: [
-        {
-          url: BRAND_CONFIG.assets.logoGrid,
-          width: 1200,
-          height: 630,
-          alt: `${BRAND_CONFIG.name} | Contact Company`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: fullTitle,
-      description,
-      images: [BRAND_CONFIG.assets.logoGrid],
-    },
-  }
+    path: "/contact",
+    locale,
+  })
 }
 
 export default async function ContactPage() {
@@ -76,7 +56,6 @@ export default async function ContactPage() {
         "@type": "Organization",
         "@id": `${BRAND_CONFIG.url}/#organization`,
         name: BRAND_CONFIG.name,
-        legalName: BRAND_CONFIG.legalName,
         url: BRAND_CONFIG.url,
         logo: `${BRAND_CONFIG.url}${BRAND_CONFIG.assets.logoGrid}`,
         email: BRAND_CONFIG.contact.email,
@@ -127,12 +106,7 @@ export default async function ContactPage() {
         <AppverseFooter />
       </main>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-      />
+      <JsonLd id="contact-structured-data" data={structuredData} />
     </>
   )
 }
