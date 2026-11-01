@@ -182,8 +182,8 @@ function PhoneCard({
           aria-label={`${title} | ${sub}`}
         />
 
-        {/* Liquid gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/30 pointer-events-none" />
+        {/* Liquid gradient overlay - Crystal clear top, focused dark base for bottom typography */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 via-35% to-transparent pointer-events-none" />
 
         <div
           className="relative z-10 flex h-full flex-col justify-between p-2.5 sm:p-3.5 text-start"

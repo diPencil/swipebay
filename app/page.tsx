@@ -6,6 +6,7 @@ import { Services } from "@/components/services"
 import { Features } from "@/components/features"
 import { LogoMarquee } from "@/components/logo-marquee"
 import { Pricing } from "@/components/pricing"
+import { MerchantsFeatureSection } from "@/components/merchants-feature-section"
 import { AppverseFooter } from "@/components/appverse-footer"
 import { getServerLocale } from "@/lib/i18n/server"
 import { getDictionarySync } from "@/lib/i18n/get-dictionary"
@@ -71,6 +72,7 @@ export default async function Page() {
         <Features />
         <LogoMarquee />
         <Pricing />
+        <MerchantsFeatureSection />
         <AppverseFooter />
       </main>
 

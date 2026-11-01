@@ -230,6 +230,11 @@ export function AppverseFooter() {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/merchants" className="hover:text-[#49CBDC] transition-colors">
+                    {dictionary.nav.merchants}
+                  </Link>
+                </li>
+                <li>
                   <Link href="/faq" className="hover:text-[#49CBDC] transition-colors">
                     {dictionary.nav.faq}
                   </Link>

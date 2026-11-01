@@ -19,6 +19,7 @@ import {
   Layers,
   Building2,
   Sparkles,
+  Store,
 } from "lucide-react"
 import { useLanguage } from "@/lib/i18n"
 import { BRAND_CONFIG } from "@/lib/brand"
@@ -32,16 +33,17 @@ export function SiteHeader() {
     { href: "/solutions", label: dictionary.nav.solutions, icon: Layers },
     { href: "/gateway", label: dictionary.nav.gateway, icon: CreditCard },
     { href: "/enterprise", label: dictionary.nav.enterprise, icon: Building2 },
+    { href: "/merchants", label: dictionary.nav.merchants, icon: Store },
     { href: "/faq", label: dictionary.nav.faq, icon: HelpCircle },
     { href: "/about", label: dictionary.nav.about, icon: Info },
   ]
 
   return (
     <header className="sticky top-0 z-50 p-4">
-      <div className="container mx-auto max-w-5xl">
-        <div className="flex h-14 items-center justify-between px-6 liquid-glass-header rounded-full">
+      <div className="container mx-auto max-w-6xl xl:max-w-7xl">
+        <div className="flex h-14 items-center justify-between px-5 sm:px-7 lg:px-8 liquid-glass-header rounded-full">
           {/* Brand Logo - Never flipped */}
-          <Link href="/" className="flex items-center gap-2 select-none">
+          <Link href="/" className="flex items-center gap-2 select-none shrink-0">
             <Image
               src={BRAND_CONFIG.assets.logoGrid}
               alt={`${BRAND_CONFIG.name} logo`}
@@ -52,13 +54,13 @@ export function SiteHeader() {
             />
           </Link>
 
-          {/* Desktop Nav - Direct Links (No dropdown) */}
-          <nav className="hidden items-center gap-6 text-sm text-white/90 md:flex">
+          {/* Desktop Nav - Direct Links with spacious responsive gaps */}
+          <nav className="hidden items-center gap-4 lg:gap-5 xl:gap-7 text-xs lg:text-sm text-white/90 lg:flex">
             {links.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="hover:text-[#49CBDC] transition-colors font-medium text-white/90"
+                className="hover:text-[#49CBDC] transition-colors font-medium text-white/90 whitespace-nowrap"
               >
                 {l.label}
               </Link>
@@ -66,7 +68,7 @@ export function SiteHeader() {
           </nav>
 
           {/* Desktop Right Controls: Language Switcher + CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3 xl:gap-4 shrink-0">
             <LanguageSwitcher />
 
             <Button
@@ -74,14 +76,14 @@ export function SiteHeader() {
               size="sm"
               className="text-xs font-semibold"
             >
-              <Link href="/contact">
+              <Link href="/contact" className="whitespace-nowrap">
                 {dictionary.nav.contactUs}
               </Link>
             </Button>
           </div>
 
           {/* Mobile Nav Button */}
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="flex items-center gap-2 lg:hidden">
             <LanguageSwitcher className="scale-90" />
             <Sheet>
               <SheetTrigger asChild>

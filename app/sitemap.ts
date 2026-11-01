@@ -45,6 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${CANONICAL_ORIGIN}/merchants`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
       url: `${CANONICAL_ORIGIN}/about`,
       lastModified,
       changeFrequency: "monthly",

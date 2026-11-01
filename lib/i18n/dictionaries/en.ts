@@ -18,6 +18,7 @@ export const enDictionary: Dictionary = {
     gateway: "Gateway",
     enterprise: "Enterprise",
     pricing: "Enterprise",
+    merchants: "Merchants",
     faq: "FAQ",
     blog: "Solutions",
     about: "About",
@@ -744,5 +745,48 @@ export const enDictionary: Dictionary = {
           "Yes. Our senior team conducts comprehensive architectural audits covering code cleanliness, database resilience, cloud security, and scalability bottlenecks before recommending modernization.",
       },
     ],
+  },
+  merchantsPage: {
+    metaTitle: "Merchants & Business Partners | SWIPEBAY",
+    metaDescription:
+      "Explore merchants and businesses working with SWIPEBAY through payment gateway integrations and digital technology services.",
+    heroEyebrow: "THE SWIPEBAY NETWORK",
+    heroHeadline: "Businesses Connected Through Swipebay.",
+    heroDescription:
+      "Explore the merchants and businesses working with SWIPEBAY across payment integrations and digital solutions.",
+    sectionLabel: "MERCHANT NETWORK",
+    sectionHeading: "The businesses we work with.",
+    sectionDescription:
+      "A growing network of merchants and businesses connected through payment technology and digital services.",
+    filterAll: "All",
+    filterPayment: "Payment Merchants",
+    filterDigital: "Digital Partners",
+    badgePayment: "Payment Integration",
+    badgeDigital: "Digital Partner",
+    emptyStateTitle: "No merchants found in this category",
+    emptyStateDescription:
+      "We are continually expanding our network of commercial partners and verified merchants.",
+    ctaHeading: "Grow with Swipebay.",
+    ctaDescription:
+      "Looking for payment integration or digital solutions for your business? Let's talk.",
+    ctaButton: "Contact Us",
+    visitWebsite: "Visit Website",
+    partnerNetworkBadge: "COMMERCIAL NETWORK",
+  },
+  merchantsFeature: {
+    badge: "MERCHANT & PARTNER NETWORK",
+    titlePart1: "Powering Commerce",
+    titlePart2: "With Unified Rails.",
+    description:
+      "From direct gateway integrations to high-volume transaction routing and bespoke digital platforms, explore the growing network of verified merchants running on SWIPEBAY.",
+    btnMerchants: "Explore Merchants",
+    btnGateway: "Gateway Rails",
+    bullet1: "Direct Multi-Gateway Routing",
+    bullet2: "PCI-DSS Tokenized Security",
+    bullet3: "Instant Financial Settlement",
+    tagGateway: "Payment Rails",
+    tagDigital: "Digital Platform",
+    viewAll: "View All 12+ Merchants",
+    activeStatus: "ACTIVE MERCHANT NETWORK",
   },
 }

@@ -12,6 +12,7 @@ export interface Dictionary {
     gateway: string
     enterprise: string
     pricing: string
+    merchants: string
     faq: string
     blog?: string
     about: string
@@ -340,5 +341,42 @@ export interface Dictionary {
       question: string
       answer: string
     }>
+  }
+  merchantsPage: {
+    metaTitle: string
+    metaDescription: string
+    heroEyebrow: string
+    heroHeadline: string
+    heroDescription: string
+    sectionLabel: string
+    sectionHeading: string
+    sectionDescription: string
+    filterAll: string
+    filterPayment: string
+    filterDigital: string
+    badgePayment: string
+    badgeDigital: string
+    emptyStateTitle: string
+    emptyStateDescription: string
+    ctaHeading: string
+    ctaDescription: string
+    ctaButton: string
+    visitWebsite: string
+    partnerNetworkBadge: string
+  }
+  merchantsFeature: {
+    badge: string
+    titlePart1: string
+    titlePart2: string
+    description: string
+    btnMerchants: string
+    btnGateway: string
+    bullet1: string
+    bullet2: string
+    bullet3: string
+    tagGateway: string
+    tagDigital: string
+    viewAll: string
+    activeStatus: string
   }
 }
